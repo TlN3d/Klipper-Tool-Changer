@@ -79,7 +79,7 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
    [include tool.cfg]
    ```
 	
-3. Create a gcode macro that reads the data from headid and saves its values:
+3. Create a gcode macro that reads the data from `toolid` and saves its values:
    ```yaml
    [save_variables]
 	filename: /home/biqu/printer_data/ToolChanger/tool_state.cfg
@@ -111,7 +111,7 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 	
 	[gcode_macro IDENTIFY_TOOL]
 	gcode:
-	    {% set v = printer['temperature_sensor headid'].temperature %}
+	    {% set v = printer['temperature_sensor toolid'].temperature %}
 	    {% if v > 14 and v < 18 %}
 	        RESPOND MSG="TOOL 1"
  	       SAVE_VARIABLE VARIABLE=tool VALUE=1
@@ -132,3 +132,5 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
    Don't forget to modify the intervals so that they correspond to different tools/resistors.
 
 4. Create different .cfg files in `/home/user/printer_data/config/Tools` named `tool1.cfg`, `tool2.cfg`, `tool3.cfg` or `tool4.cfg`. If more files are needed, duplicate a section in the gcode macro in step 3 above and add a line with file name and value in tool_watcher.py (lines 10-12).
+
+5. Run gcode macro `IDENTIFY_TOOL`.
