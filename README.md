@@ -19,9 +19,19 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 
 ### System setup:
 
-	1. Move the map ToolChager to /home/biqu/printer_data/
-	2. Move tool_watcher.service to /etc/systemd/system
-	3. Run commands: 
+1. Move the map ToolChager to `/home/user/printer_data/` with [WinSCP](https://winscp.net/eng/download.php) or a similar tool. Alternatively you can `ssh` into your device and run either:
+   ```bash
+   sudo mkdir /home/biqu/printer_data/ToolChanger
+   sudo nano /home/biqu/printer_data/ToolChanger/tool_watcher.py
+   ```
+   or
+   ```bash
+   sudo mkdir /home/pi/printer_data/ToolChanger
+   sudo nano /home/pi/printer_data/ToolChanger/tool_watcher.py
+   ```
+   and paste the contents of the correct tool_watcher.py from this repository.
+3. Move tool_watcher.service to /etc/systemd/system
+4. Run commands: 
 sudo systemctl daemon-reload
 sudo systemctl enable --now tool_watcher.service
 		
