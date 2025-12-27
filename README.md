@@ -12,7 +12,7 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 * On change in `tool_state.cfg` the script reads the value in `tool_change.cfg` and chooses the correct file from `/home/user/printer_data/config/Tools`.
 * That file then gets copied, renamed to `tool.cfg` and moved to `/home/user/printer_data/config`, where it can be called by `printer.cfg`.
 * The original file stays in its original location unchanged. Klipper service restarts.
-> *Note:*
+> **Note:**
 > The script was tested only on the BIQU BTTPi. The RaspberryPi version is untested. If anyone tries it I would greatly appreciate any feedback.
 
 # Installation
@@ -24,7 +24,7 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
    sudo mkdir /home/biqu/printer_data/ToolChanger
    sudo nano /home/biqu/printer_data/ToolChanger/tool_watcher.py
    ```
-   or
+   ***or***
    ```bash
    sudo mkdir /home/pi/printer_data/ToolChanger
    sudo nano /home/pi/printer_data/ToolChanger/tool_watcher.py
@@ -35,12 +35,12 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
    ```bash
    chmod +x /home/biqu/printer_data/ToolChanger/tool_watcher.py
    ```
-   or
+   ***or***
    ```bash
    chmod +x /home/pi/printer_data/ToolChanger/tool_watcher.py
    ```
    
-3. Move `tool_watcher.service` to `/etc/systemd/system/` or run:
+3. Move `tool_watcher.service` to `/etc/systemd/system/` ***or*** run:
    ```bash
    sudo nano /etc/systemd/system/tool_watcher.service
    ```
