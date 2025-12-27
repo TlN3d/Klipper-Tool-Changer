@@ -6,7 +6,7 @@ Klipper-Tool-Changer is a script that automatically changes config settings depe
 
 Automation that listens to stored values from Klipper and activates a .cfg file accordingly.
 
-* Pin tests resistance of a resistor connected to it and GND.
+* Gcode macro `IDENTIFY_TOOL` tests resistance of a resistor connected to selected pin and GND.
 * Klipper stores the given value to `/home/user/printer_data/ToolChanger/tool_state.cfg`.
 * A systemd service runs python script in `/home/user/printer_data/ToolChanger/tool_watcher.py` on startup.
 * On change in `tool_state.cfg` the script reads the value in `tool_change.cfg` and chooses the correct file from `/home/user/printer_data/config/Tools`.
@@ -61,14 +61,14 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 
 1. Create a section for the sensor in `printer.cfg` with the correct pins:
    ```yaml
-   [adc_temperature my_sensor_type]
+   [adc_temperature resistance_sensor]
 	voltage1: 0
 	temperature1: 0
 	voltage2: 5
 	temperature2: 500
 
-	[temperature_sensor headid]
-	sensor_type: my_sensor_type
+	[temperature_sensor toolid]
+	sensor_type: resistance_sensor
 	sensor_pin: EXAMPLE_PIN
 	min_temp: 0
 	max_temp: 500
@@ -86,7 +86,7 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 	
 	[gcode_macro IDENTIFY_TOOL]
 	gcode:
-	    {% set v = printer['temperature_sensor headid'].temperature %}
+	    {% set v = printer['temperature_sensor toolid'].temperature %}
 	    {% if v > 14 and v < 18 %}
 	        RESPOND MSG="TOOL 1"
  	       SAVE_VARIABLE VARIABLE=tool VALUE=1
