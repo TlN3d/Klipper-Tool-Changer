@@ -29,11 +29,28 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
    sudo mkdir /home/pi/printer_data/ToolChanger
    sudo nano /home/pi/printer_data/ToolChanger/tool_watcher.py
    ```
-   and paste the contents of the correct tool_watcher.py from this repository.
-3. Move tool_watcher.service to /etc/systemd/system
-4. Run commands: 
-sudo systemctl daemon-reload
-sudo systemctl enable --now tool_watcher.service
+   and paste the contents of the correct `tool_watcher.py`.
+
+2. Make it executable:
+   ```bash
+   chmod +x /home/biqu/printer_data/ToolChanger/tool_watcher.py
+   ```
+   or
+   ```bash
+   chmod +x /home/pi/printer_data/ToolChanger/tool_watcher.py
+   ```
+   
+3. Move `tool_watcher.service` to `/etc/systemd/system/` or run:
+   ```bash
+   sudo nano /etc/systemd/system/tool_watcher.service
+   ```
+   and paste the contents of the correct `tool_watcher.service`.
+   
+5. Run commands:
+   ```bash
+	sudo systemctl daemon-reload
+	sudo systemctl enable --now tool_watcher.service
+   ```
 		
 	4. You can check service's status with the command:
 systemctl status tool_watcher.service
