@@ -39,7 +39,7 @@ def copy_template(tool):
     backup = ACTIVE_FILE + ".bak"
     shutil.copy2(ACTIVE_FILE, backup)
     shutil.copy2(template, ACTIVE_FILE)
-    print(f"Tool {tool}: duplicated successfully.")
+    print(f"Tool{tool}.cfg duplicated successfully.")
 
 def main():
     current = None
