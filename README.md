@@ -74,34 +74,62 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 	max_temp: 500
    ```
 
-2. Include tool.cfg in printer.cfg:
+2. Include `tool.cfg` in `printer.cfg`:
    ```yaml
    [include tool.cfg]
    ```
 	
-	3. Create gcode macro that reads the data from headid and saves its values:
-[save_variables]
-filename: /home/biqu/printer_data/ToolChanger/tool_state.cfg
-
-[gcode_macro IDENTIFY_TOOL]
-gcode:
-    {% set v = printer['temperature_sensor headid'].temperature %}
-    {% if v > 14 and v < 18 %}
-        RESPOND MSG="TOOL 1"
-        SAVE_VARIABLE VARIABLE=tool VALUE=1
-    {% elif v > 350 and v < 365 %}
-        RESPOND MSG="TOOL 2"
-        SAVE_VARIABLE VARIABLE=tool VALUE=2
-    {% elif v > 420 and v < 430 %}
-        RESPOND MSG="TOOL 3"
-        SAVE_VARIABLE VARIABLE=tool VALUE=3
-    {% elif v > 445 and v < 455 %}
-        RESPOND MSG="TOOL 4"
-        SAVE_VARIABLE VARIABLE=tool VALUE=4
-    {% else %}
-        RESPOND MSG="NO TOOL DETECTED"
-        SAVE_VARIABLE VARIABLE=tool VALUE=0
-    {% endif %}
+3. Create a gcode macro that reads the data from headid and saves its values:
+   ```yaml
+   [save_variables]
+	filename: /home/biqu/printer_data/ToolChanger/tool_state.cfg
+	
+	[gcode_macro IDENTIFY_TOOL]
+	gcode:
+	    {% set v = printer['temperature_sensor headid'].temperature %}
+	    {% if v > 14 and v < 18 %}
+	        RESPOND MSG="TOOL 1"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=1
+ 	   {% elif v > 350 and v < 365 %}
+ 	       RESPOND MSG="TOOL 2"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=2
+ 	   {% elif v > 420 and v < 430 %}
+ 	       RESPOND MSG="TOOL 3"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=3
+ 	   {% elif v > 445 and v < 455 %}
+	        RESPOND MSG="TOOL 4"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=4
+ 	   {% else %}
+ 	       RESPOND MSG="NO TOOL DETECTED"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=0
+ 	   {% endif %}
+   ```
+   ***or***
+   ```yaml
+   [save_variables]
+	filename: /home/pi/printer_data/ToolChanger/tool_state.cfg
+	
+	[gcode_macro IDENTIFY_TOOL]
+	gcode:
+	    {% set v = printer['temperature_sensor headid'].temperature %}
+	    {% if v > 14 and v < 18 %}
+	        RESPOND MSG="TOOL 1"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=1
+ 	   {% elif v > 350 and v < 365 %}
+ 	       RESPOND MSG="TOOL 2"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=2
+ 	   {% elif v > 420 and v < 430 %}
+ 	       RESPOND MSG="TOOL 3"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=3
+ 	   {% elif v > 445 and v < 455 %}
+	        RESPOND MSG="TOOL 4"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=4
+ 	   {% else %}
+ 	       RESPOND MSG="NO TOOL DETECTED"
+ 	       SAVE_VARIABLE VARIABLE=tool VALUE=0
+ 	   {% endif %}
+   ```
+   Don't forget to modify the intervals that correspond to different tools.
 
 	4. Create different .cfg files in /home/biqu/printer_data/config/Tools named tool1.cfg, tool2.cfg,
 	tool3.cfg or tool4.cfg. If more files are needed, duplicate a section in the gcode macro (lines
