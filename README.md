@@ -7,9 +7,10 @@ Klipper-Tool-Changer is a script that automatically changes config settings depe
 Automation that listens to stored values from Klipper and activates a .cfg file accordingly.
 
 * Gcode macro `IDENTIFY_TOOL` tests resistance of a resistor connected to selected pin and GND.
-* Klipper stores the given value to `/home/user/printer_data/ToolChanger/tool_state.cfg`.
-* A systemd service runs python script in `/home/user/printer_data/ToolChanger/tool_watcher.py` on startup.
-* On change in `tool_state.cfg` the script reads the value in `tool_change.cfg` and chooses the correct file from `/home/user/printer_data/config/Tools`.
+* Klipper processes the given input depending on set intervals and assigns a value to `toolid`.
+* That value then gets stored to `/home/user/printer_data/ToolChanger/tool_state.cfg`.
+* A systemd service runs python script on startup.
+* On change in `tool_state.cfg` the script `tool_watcher.py` (ran from startup by a systemd service `tool_watcher.service`) reads the value in `tool_change.cfg` and chooses the corresponding file from `/home/user/printer_data/config/Tools`.
 * That file then gets copied, renamed to `tool.cfg` and moved to `/home/user/printer_data/config`, where it can be called by `printer.cfg`.
 * The original file stays in its original location unchanged. Klipper service restarts.
 > **Note:**
