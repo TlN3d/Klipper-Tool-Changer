@@ -16,6 +16,8 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 > The script was tested only on the BIQU BTTPi. The RaspberryPi version is untested. If anyone tries it I would greatly appreciate any feedback.
 
 # Installation
+To install onto a BTTPi, use files in the `BIQU` folder.
+To install onto a RaspberryPi or similar, use files in the `RaspberryPi` folder.
 
 ### System setup:
 
