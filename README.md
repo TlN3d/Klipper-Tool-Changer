@@ -46,33 +46,38 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
    ```
    and paste the contents of the correct `tool_watcher.service`.
    
-5. Run commands:
+4. Run commands:
    ```bash
-	sudo systemctl daemon-reload
-	sudo systemctl enable --now tool_watcher.service
+   sudo systemctl daemon-reload
+   sudo systemctl enable --now tool_watcher.service
    ```
 		
-	4. You can check service's status with the command:
-systemctl status tool_watcher.service
+5. You can check service's status with the command:
+   ```bash
+   systemctl status tool_watcher.service
+   ```
 		
----
-II. Klipper setup:
+### Klipper setup:
 
-	1. Create a section for the sensor in printer.cfg:
-[adc_temperature my_sensor_type]
-voltage1: 0
-temperature1: 0
-voltage2: 5
-temperature2: 500
+1. Create a section for the sensor in `printer.cfg` with the correct pins:
+   ```yaml
+   [adc_temperature my_sensor_type]
+	voltage1: 0
+	temperature1: 0
+	voltage2: 5
+	temperature2: 500
 
-[temperature_sensor headid]
-sensor_type: my_sensor_type
-sensor_pin: PA4
-min_temp: 0
-max_temp: 500
+	[temperature_sensor headid]
+	sensor_type: my_sensor_type
+	sensor_pin: EXAMPLE_PIN
+	min_temp: 0
+	max_temp: 500
+   ```
 
-	2. Include tool.cfg in printer.cfg:
-[include tool.cfg]
+2. Include tool.cfg in printer.cfg:
+   ```yaml
+   [include tool.cfg]
+   ```
 	
 	3. Create gcode macro that reads the data from headid and saves its values:
 [save_variables]
