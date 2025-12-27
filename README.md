@@ -129,8 +129,6 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
  	       SAVE_VARIABLE VARIABLE=tool VALUE=0
  	   {% endif %}
    ```
-   Don't forget to modify the intervals that correspond to different tools.
+   Don't forget to modify the intervals so that they correspond to different tools/resistors.
 
-	4. Create different .cfg files in /home/biqu/printer_data/config/Tools named tool1.cfg, tool2.cfg,
-	tool3.cfg or tool4.cfg. If more files are needed, duplicate a section in the gcode macro (lines
-	48-59 in this file) and add a line with file name and value in tool_watcher.py (lines 10-12)
+4. Create different .cfg files in `/home/user/printer_data/config/Tools` named `tool1.cfg`, `tool2.cfg`, `tool3.cfg` or `tool4.cfg`. If more files are needed, duplicate a section in the gcode macro in step 3 above and add a line with file name and value in tool_watcher.py (lines 10-12).
