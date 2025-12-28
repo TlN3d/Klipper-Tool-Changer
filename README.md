@@ -16,7 +16,9 @@ I made it to be able to change rotation distance when changing between a normal 
 * A systemd service runs python script on startup.
 * On change in `tool_state.cfg` the script `tool_watcher.py` (ran from startup by a systemd service `tool_watcher.service`) reads the value in `tool_change.cfg` and chooses the corresponding file from `/home/user/printer_data/config/Tools`.
 * That file then gets copied, renamed to `tool.cfg` and moved to `/home/user/printer_data/config`, where it can be called by `printer.cfg`.
-* The original file stays in its original location unchanged. Klipper service restarts.
+* The original file stays in its original location unchanged.
+* Klipper service restarts.
+
 > **Note:**
 > The script was tested only on the BIQU BTTPi. The RaspberryPi version is untested. If anyone tries it I would greatly appreciate any feedback.
 
