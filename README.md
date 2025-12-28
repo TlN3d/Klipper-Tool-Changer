@@ -4,7 +4,7 @@ Klipper-Tool-Changer is a script that automatically changes config settings depe
 
 # Description
 
-Automation that listens to stored values from Klipper and activates a .cfg file accordingly.
+Automation that listens to stored values from Klipper and activates a .cfg file accordingly. I made it to be able to change rotation distance when changing between a normal extruder and [GreenBoy3D's pellet extruder](https://greenboy3d.de). Each extruder attaches to the printhead magnetically, wires are connected using magnetic pin connectors. A different resistor on each extruder is connected to a free pin and a GND line of a fan. I have the gcode macro `IDENTIFY_TOOL` in my `print_start` macro in case I forgot to run it manually.
 
 * Gcode macro `IDENTIFY_TOOL` tests resistance of a resistor connected to selected pin and GND.
 * Klipper processes the given input depending on set intervals and assigns a value to `toolid`.
@@ -15,6 +15,7 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 * The original file stays in its original location unchanged. Klipper service restarts.
 > **Note:**
 > The script was tested only on the BIQU BTTPi. The RaspberryPi version is untested. If anyone tries it I would greatly appreciate any feedback.
+
 
 # Installation
 To install onto a BTTPi, use files in the `Biqu` folder. To install onto a RaspberryPi or similar, use files in the `RaspberryPi` folder. The only differences are paths in `tool_watcher.service` and `tool_watcher.py`.
