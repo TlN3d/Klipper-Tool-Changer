@@ -98,9 +98,6 @@ To install onto a BTTPi, use files in the `Biqu` folder. To install onto a Raspb
  	   {% elif v > 420 and v < 430 %}
  	       RESPOND MSG="TOOL 3"
  	       SAVE_VARIABLE VARIABLE=tool VALUE=3
- 	   {% elif v > 445 and v < 455 %}
-	        RESPOND MSG="TOOL 4"
- 	       SAVE_VARIABLE VARIABLE=tool VALUE=4
  	   {% else %}
  	       RESPOND MSG="NO TOOL DETECTED"
  	       SAVE_VARIABLE VARIABLE=tool VALUE=0
@@ -123,9 +120,6 @@ To install onto a BTTPi, use files in the `Biqu` folder. To install onto a Raspb
  	   {% elif v > 420 and v < 430 %}
  	       RESPOND MSG="TOOL 3"
  	       SAVE_VARIABLE VARIABLE=tool VALUE=3
- 	   {% elif v > 445 and v < 455 %}
-	        RESPOND MSG="TOOL 4"
- 	       SAVE_VARIABLE VARIABLE=tool VALUE=4
  	   {% else %}
  	       RESPOND MSG="NO TOOL DETECTED"
  	       SAVE_VARIABLE VARIABLE=tool VALUE=0
@@ -133,6 +127,6 @@ To install onto a BTTPi, use files in the `Biqu` folder. To install onto a Raspb
    ```
    Don't forget to modify the intervals so that they correspond to different tools/resistors.
 
-4. Create different .cfg files in `/home/user/printer_data/config/Tools` named `tool1.cfg`, `tool2.cfg`, `tool3.cfg` or `tool4.cfg`. If more files are needed, duplicate a section in the gcode macro in step 3 above and add a line with file name and value in tool_watcher.py (lines 10-12).
+4. Create different .cfg files in `/home/user/printer_data/config/Tools` named `tool1.cfg`, `tool2.cfg` or `tool3.cfg`. If more files are needed, duplicate a section in the gcode macro in step 3 above and add a line with file name and value in tool_watcher.py (lines 10-12).
 
 5. Run gcode macro `IDENTIFY_TOOL`.
