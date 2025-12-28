@@ -9,7 +9,7 @@ Automation that listens to stored values from Klipper and activates a .cfg file 
 ### My use case:
 I made it to be able to change rotation distance when changing between a normal extruder and [GreenBoy3D's pellet extruder](https://greenboy3d.de). Each extruder attaches to the printhead magnetically, wires are connected using magnetic pin connectors. A different resistor on each extruder is connected to a free pin and a GND line of a fan. I have the gcode macro `IDENTIFY_TOOL` in my `print_start` macro in case I forgot to run it manually.
 
-### Explanation:
+### How it works:
 * Gcode macro `IDENTIFY_TOOL` tests resistance of a resistor connected to selected pin and GND.
 * Klipper processes the given input depending on set intervals and assigns a value to `toolid`.
 * That value then gets stored to `/home/user/printer_data/ToolChanger/tool_state.cfg`.
